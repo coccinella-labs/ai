@@ -12,7 +12,7 @@ News
 
 Recent dependency changes were made to improve compatibility across Python versions. Version pins for numpy, pandas, scikit-learn, and matplotlib were removed because pinned versions (for example, numpy==1.26.0) required Python <3.13 and caused installation failures on newer Python releases such as Python 3.14. Allowing the latest compatible versions ensures broader compatibility without conflicts.
 
-Weights & Biases support was removed due to protobuf import errors encountered in virtual environments. As a result, the codebase no longer depends on wandb.
+Weights & Biases support is optional. `wandb` is not in `requirements.txt`, and `cli.py` falls back to skipping it when the import fails, which happens in virtual environments with protobuf conflicts. When `wandb` is installed and `wandb.enabled` is set in `config/benchmark.yaml`, benchmark results are still logged to a W&B run.
 
 Requirements
 
@@ -25,7 +25,7 @@ Installation
 Clone the repository:
 
 ```
-cd $HOME && git clone <repo-url>
+cd $HOME && git clone https://github.com/coccinella-labs/ai.git
 cd ai
 ```
 
